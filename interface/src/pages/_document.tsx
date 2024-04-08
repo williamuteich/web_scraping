@@ -8,7 +8,7 @@ export default function Document() {
     <Html lang="en">
       <Head />
       <body>
-        <div className="flex gap-5  w-full h-screen box-sh">
+        <div className="flex gap-3  w-full h-screen box-sh">
           <div className="w-64 pt-0 pl-6 text-lg relative">
             <Menulateral />
           </div>

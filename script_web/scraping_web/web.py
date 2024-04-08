@@ -12,10 +12,11 @@ class Site:
 
         resposta = page.text
         soup = BeautifulSoup(resposta, 'html.parser')
-        vagas = soup.find_all('a')
+        vagas = soup.find_all('a', class_="oportunidade-item-link-wrapper")
 
         tag_class1 = 'title'  # Titulo da vaga
         tag_class2 = 'text'  # subtitulo
+        tag_class3 = 'icon' #imagem
 
         vagas_dict_estagiar = {}
         base_url = "https://www.estagiar-br.com.br"
@@ -24,6 +25,11 @@ class Site:
             if (vaga.h4 != None) and (tag_class1 in vaga.h4.get('class')):
                 title = vaga.h4.text
                 paragrafo = vaga.p.text if (vaga.p != None) and (tag_class2 in vaga.p.get('class')) else ''
-                vagas_dict_estagiar[title, paragrafo] = base_url + vaga.get('href')
+                imagem = vaga.img.get('src') if vaga.img and vaga.img.get('class') else ''
+                vagas_dict_estagiar[title, paragrafo, imagem] = base_url + vaga.get('href')
 
         self.news = vagas_dict_estagiar
+        print(vagas_dict_estagiar)
+    
+recebe = Site()
+recebe.update_vagas()

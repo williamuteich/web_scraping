@@ -19,7 +19,7 @@ const Menulateral = () => {
         }
     ];
     return ( 
-        <div className=" fixed h-screen w-64 left-0 top-0 px-8 py-8 bg-[var(--corPrincipal)]">
+        <div className=" fixed h-screen w-60 left-0 top-0 px-8 py-8 bg-[var(--corPrincipal)]">
             <div>
                 <img className="w-20 h-auto rounded-full" src="/logoProjeto.png" alt="logo vagas" title="vagas" />
             </div>

@@ -13,12 +13,11 @@ class IndexNews:
         self.site_principal = Site()
 
         # Define o caminho para salvar o arquivo vagas.json no diretório pai da raiz do script
-        self.arquivo_vagas = os.path.abspath(os.path.join(os.getcwd(), '..', 'vagas.json'))
+        self.arquivo_vagas = os.path.abspath(os.path.join(os.getcwd(), 'vagas.json'))
 
         self.vagas = self._read_file(self.arquivo_vagas) if os.path.exists(self.arquivo_vagas) else []
         df = pd.DataFrame(self.vagas)
         print("Vagas carregadas:")
-        print(df)
 
         self.kill = False
         self.news_thread = Thread(target=self.update_vagas)
@@ -34,7 +33,6 @@ class IndexNews:
         try:
             df = pd.read_json(mode)
             print("Arquivo lido:")
-            print(df)
             return df.to_dict(orient='records')
         except ValueError:
             print("Arquivo vazio ou formato inválido.")
@@ -49,6 +47,7 @@ class IndexNews:
             for key, value in self.site_principal.news.items():
                 dict_aux = {}
                 dict_aux['data'] = datetime.now().strftime('%Y-%m-%d %H:%M:%S')
+                dict_aux['imagem'] = key[2] if isinstance(key, tuple) else ''
                 dict_aux['site'] = 'estagiar'
                 dict_aux['vaga'] = key[0] if isinstance(key, tuple) else key
                 dict_aux['descricao'] = key[1] if isinstance(key, tuple) else ''
