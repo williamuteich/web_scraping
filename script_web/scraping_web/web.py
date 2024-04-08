@@ -29,7 +29,3 @@ class Site:
                 vagas_dict_estagiar[title, paragrafo, imagem] = base_url + vaga.get('href')
 
         self.news = vagas_dict_estagiar
-        print(vagas_dict_estagiar)
-    
-recebe = Site()
-recebe.update_vagas()

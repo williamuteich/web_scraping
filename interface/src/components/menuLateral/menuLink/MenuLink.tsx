@@ -1,49 +1,27 @@
-<<<<<<< HEAD
-"use client"
-
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import { IconType } from 'react-icons'; 
 
 interface MenuItem {
     title: string;
     path: string;
-    icon: string;
+    icon: string | IconType;
 }
 
 const MenuLink = ({ item }: { item: MenuItem }) => {
     const pathname = usePathname();
     return (
-        <Link href={item.path} passHref>
+        <Link href={item.path} passHref className="flex gap-2 items-center">
+            {typeof item.icon === 'string' ? (
+                <img src={item.icon} alt={item.title} className="w-auto h-8"/> 
+            ) : (
+                <item.icon size={22} /> 
+            )}
             <div className={`text-white transition duration-300 border-b-2 border-transparent hover:border-white ${pathname === item.path ? 'border-white' : ''}`}>
-                <span>{item.title}</span>
+                <span className="text-base">{item.title}</span>
             </div>
         </Link>
     );
 }
  
 export default MenuLink;
-=======
-"use client"
-
-import Link from "next/link";
-import { usePathname } from "next/navigation";
-
-interface MenuItem {
-    title: string;
-    path: string;
-    icon: string;
-}
-
-const MenuLink = ({ item }: { item: MenuItem }) => {
-    const pathname = usePathname();
-    return (
-        <Link href={item.path} passHref>
-            <div className={`text-white transition duration-300 border-b-2 border-transparent hover:border-white ${pathname === item.path ? 'border-white' : ''}`}>
-                <span>{item.title}</span>
-            </div>
-        </Link>
-    );
-}
- 
-export default MenuLink;
->>>>>>> cc0b112b7d6b5b1ba822c0d31a29adfc7e5bb211
