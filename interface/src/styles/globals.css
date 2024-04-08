@@ -1,0 +1,28 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --corPrincipal: #182237;
+  --corSecundaria: #d3d3d3;
+}
+
+body {
+  color: white;
+  font-size: 18px;
+  font-weight: normal;
+  list-style: none;
+
+  margin: 0;
+  padding: 0;
+}
+
+span{
+  color: white;
+}
+
+.card{
+  border: 1px solid #0000002a;
+  box-shadow: 1px 1px 12px #0000002f;
+  border-radius: 10px;
+}
