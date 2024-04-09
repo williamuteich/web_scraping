@@ -4,7 +4,7 @@
 
 :root {
   --corPrincipal: #182237;
-  --corSecundaria: #d3d3d3;
+  --corSecundaria: #151c2c;
 }
 
 body {
@@ -23,6 +23,6 @@ span{
 
 .card{
   border: 1px solid #0000002a;
-  box-shadow: 1px 1px 12px #0000002f;
+  box-shadow: 1px 1px 12px #00000033;
   border-radius: 10px;
 }

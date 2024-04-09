@@ -30,13 +30,11 @@ const Menulateral = () => {
         }
     ];
     return ( 
-        <div className=" fixed h-screen w-60 left-0 top-0 px-8 py-8 bg-[var(--corPrincipal)]">
-            <div>
-                <h1 style={{ filter: 'drop-shadow(1px 3px 1px orange)' }} className="text-2xl font-bold">
-                    Vagas Estágio
-                </h1>
+        <div className="h-screen bg-[var(--corPrincipal)] left-0 top-0 pl-6 pr-6 py-8" style={{ position: 'fixed', width: 'calc(100% - 87%)', boxShadow: '7px 0px 10px #151c2c70;' }}>
+            <div className="flex items-center justify-center">
+                <img src="/vagaonlines.png" alt="vagasLogo" className="w-36 h-auto"/>
             </div>
-            <ul className="mt-6 flex flex-col gap-3">
+            <ul className="mt-4 flex flex-col gap-3 ">
             {menuItem.map(section => (
                 <li key={section.title}>
                     <span className="text-sm text-gray-400 ">{section.title}</span>

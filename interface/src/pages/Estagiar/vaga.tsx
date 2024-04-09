@@ -1,8 +1,7 @@
 import React, { useState } from 'react';
 import fs from 'fs';
 import path from 'path';
-import { FaArrowDown, FaArrowUp } from 'react-icons/fa';
-
+import NavBuscar from './components/buscar';
 
 const filePath: string = path.resolve('..' ,'vagas.json');
 
@@ -31,40 +30,57 @@ const formatarData = (dataCompleta: any): string => {
 };
 
 const VagasComponent = ({ vagas }: { vagas: any[] }) => {
-  const [openIndexes, setOpenIndexes] = useState<number[]>([]);
+  const [openIndex, setOpenIndex] = useState<number | null>(null);
+  const [buscar, setBuscar] = useState('');
+
+  const vagasFiltradas = vagas.filter((vaga: any) =>
+    vaga.vaga.toLowerCase().includes(buscar.toLowerCase()) ||
+    vaga.descricao.toLowerCase().includes(buscar.toLowerCase()) ||
+    vaga.codigo.toLowerCase().includes(buscar.toLowerCase())
+  );
 
   const toggleAccordion = (index: number) => {
-    const isOpen = openIndexes.includes(index);
-    const updatedIndexes = isOpen
-      ? openIndexes.filter((item) => item !== index)
-      : [...openIndexes, index];
-    setOpenIndexes(updatedIndexes);
+    setOpenIndex(prevIndex => (prevIndex === index ? null : index));
   };
 
   return (
     <div>
-      <h1>Vagas de Emprego</h1>
-      <div className='grid grid-cols-3 gap-4'>
-        {vagas.map((vaga: any, index: number) => (
-          <div key={index} className='p-3 card flex flex-col gap-1'>
-            <span className='text-sm text-black text-end font-thin'>Código: {vaga.codigo}</span>
-            <div className="h-14 w-20 overflow-hidden">
-                <h1>aqui fica o component de busca</h1>
+      <div className="shadow-lg"> 
+        <NavBuscar setBuscar={setBuscar} buscar={buscar} />
+        <div className="p-1 mb-6 text-center border border-solid  bg-[#00000017]">
+          <span className='text-sm capitalize font-semibold text-gray-500'>Descubra oportunidades de estágio! Explore as melhores vagas para impulsionar sua carreira.</span>
+        </div>
+      </div>
+      <div className='grid grid-cols-3 gap-4 '>
+        {
+          vagasFiltradas.length > 0 ? (
+          vagasFiltradas.map((vaga: any, index: number) => (
+          <div key={index} className='p-3 card flex flex-col'>
+            <div className='flex justify-end gap-4 items-center'>
+              {/*<p className='text-sm text-black text-end font-thin text-gray-500 '>Atualizado: {formatarData(vaga.data)}</p>*/}
+              <span className='text-sm text-black text-end font-thin text-gray-500 underline'>Código: {vaga.codigo}</span>
             </div>
-            <h3 className='text-base font-semibold text-black'>{vaga.vaga}</h3>
-            <p className='text-sm text-black'>Atualizado: {formatarData(vaga.data)}</p>
+            <div className="h-14 w-20 overflow-hidden mb-2">
+                <img src={vaga.imagem} className="w-full h-full object-contain" alt="Imagem da vaga" />
+            </div>
+            <h3 className='text-base font-semibold mb-2 text-blue-800'>{vaga.vaga}</h3>
             <p className='text-sm text-black'>{vaga.descricao}</p>
-            <div className="mt-4">
-              <button onClick={() => toggleAccordion(index)} className="flex items-center space-x-1 bg-gray-200 px-2 py-1 rounded-md transition duration-300">
-                {openIndexes.includes(index) ? <FaArrowUp /> : <FaArrowDown />}
-                <span>{openIndexes.includes(index) ? 'Fechar' : 'Abrir'}</span>
+            <div className="mt-4 text-center">
+              <button onClick={() => toggleAccordion(index)} className="text-sm w-full pt-2 pb-2 justify-center flex items-center space-x-1 bg-[var(--corPrincipal)] px-2 py-1 rounded-md transition duration-300">
+                <span>Mais Informações</span>
               </button>
-              <div className={`accordion overflow-hidden transition-all duration-300 ${openIndexes.includes(index) ? 'h-auto' : 'h-0'}`}>
-                <p className="bg-gray-100 px-4 py-2">Conteúdo do Acordeão</p>
+              {openIndex === index && (
+                /*exibir modal aqui para exibir mais informações*/
+              <div className="border border-solid border-gray-200 mt-1 rounded-lg accordion overflow-hidden transition-all duration-300">
+                <p className="text-black px-4 py-2">Conteúdo do Acordeão</p>
               </div>
+              )}
             </div>
           </div> 
-        ))}
+         ))
+        ) : (
+          <div className=" text-gray-900 pl-10 mt-4">Sem resultados.</div>
+        )}
       </div>
     </div>
   );

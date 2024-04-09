@@ -6,11 +6,11 @@ export default function Document() {
     <Html lang="en">
       <Head />
       <body>
-        <div className="flex gap-3  w-full h-screen box-sh">
-          <div className="w-64 pt-0 pl-1 text-lg relative">
+        <div className="flex  w-full h-auto box-sh">
+          <div className="pt-0 pl-1 text-lg relative text-corSecundaria  bg-[var(--corPrincipal)]" style={{ position: 'relative', width: 'calc(100% - 85%)', height: '100vh' }}>
             <Menulateral />
           </div>
-          <div className="pt-4 pb-4 w-full pl-8 pr-8">
+          <div className="pt-4 pb-4 w-full pl-4 pr-4">
               <Main />
           </div>
         </div>
