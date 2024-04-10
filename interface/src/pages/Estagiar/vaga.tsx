@@ -2,6 +2,8 @@ import React, { useState } from 'react';
 import fs from 'fs';
 import path from 'path';
 import NavBuscar from './components/buscar';
+import MoreInfo from './components/infoModal';
+import CustomModal from '@/components/modal/CustomModal';
 
 const filePath: string = path.resolve('..' ,'vagas.json');
 
@@ -70,10 +72,9 @@ const VagasComponent = ({ vagas }: { vagas: any[] }) => {
                 <span>Mais Informações</span>
               </button>
               {openIndex === index && (
-                /*exibir modal aqui para exibir mais informações*/
-              <div className="border border-solid border-gray-200 mt-1 rounded-lg accordion overflow-hidden transition-all duration-300">
-                <p className="text-black px-4 py-2">Conteúdo do Acordeão</p>
-              </div>
+                <CustomModal isOpen={openIndex === index} onRequestClose={() => toggleAccordion(null)}>
+                  <MoreInfo />
+                </CustomModal>
               )}
             </div>
           </div> 
