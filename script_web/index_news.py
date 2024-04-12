@@ -17,7 +17,7 @@ class IndexNews:
 
         self.vagas = self._read_file(self.arquivo_vagas) if os.path.exists(self.arquivo_vagas) else []
         df = pd.DataFrame(self.vagas)
-        print("Vagas carregadas:")
+        print("Vagas carregadas:", self.vagas)
 
         self.kill = False
         self.news_thread = Thread(target=self.update_vagas)
@@ -47,13 +47,15 @@ class IndexNews:
             for key, value in self.site_principal.news.items():
                 dict_aux = {}
                 dict_aux['data'] = datetime.now().strftime('%Y-%m-%d %H:%M:%S')
-                dict_aux['imagem'] = key[2] if isinstance(key, tuple) else ''
+                dict_aux['imagem'] = value['imagem']
                 dict_aux['site'] = 'estagiar'
-                dict_aux['vaga'] = key[0] if isinstance(key, tuple) else key
-                dict_aux['descricao'] = key[1] if isinstance(key, tuple) else ''
-                dict_aux['link'] = value
+                dict_aux['vaga'] = value['title']
+                dict_aux['descricao'] = value['paragrafo']
+                dict_aux['link'] = value['detalhes_texto'][0] if value.get('detalhes_texto') else ''  # Verifica se 'detalhes_texto' existe e não está vazio antes de acessar o primeiro elemento
+                dict_aux['detalhes'] = value['detalhes_texto'][1] if len(value.get('detalhes_texto', [])) > 1 else ''  # Acessa o segundo elemento de 'detalhes_texto' se existir
 
                 if len(self.vagas) == 0:
+                    
                     print("Vagas vazias, inserindo nova vaga:", dict_aux)
                     self.vagas.append(dict_aux)
                     continue
@@ -70,6 +72,7 @@ class IndexNews:
 
             self.vagas.sort(key=lambda x: datetime.strptime(x['data'], '%Y-%m-%d %H:%M:%S'), reverse=True)
             self._update_file(self.vagas, self.arquivo_vagas)
-            time.sleep(1800)
+            time.sleep(5)
 
+# Instanciando a classe
 self = IndexNews()

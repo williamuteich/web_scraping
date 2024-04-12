@@ -1,6 +1,5 @@
 import requests
 from bs4 import BeautifulSoup
-from concurrent.futures import ThreadPoolExecutor
 
 class Site:
     def __init__(self):
@@ -34,38 +33,35 @@ class Site:
         tag_class2 = 'text'  # Subtítulo
         tag_class3 = 'code'  # Código
 
-        tag_detalhe1 = 'container-title' 
         tag_detalhe2 = 'common-text' 
 
-        executor = ThreadPoolExecutor(max_workers=5)  # Defina o número máximo de threads
+        # Lista para armazenar os códigos coletados
+        codes_collected = []
 
-        futures = []
         for vaga in vagas:
             if (vaga.h4 is not None) and (tag_class1 in vaga.h4.get('class')):
                 title = vaga.h4.text
                 paragrafo = vaga.p.text if (vaga.p is not None) and (tag_class2 in vaga.p.get('class')) else ''
                 imagem = vaga.img.get('src') if vaga.img and vaga.img.get('class') else ''
                 code = vaga.find('p', class_=tag_class3).text if vaga.find('p', class_=tag_class3) else 'vazio'
-                vagas_dict_estagiar[title, paragrafo, imagem, code] = self.base_url + vaga.get('href')
-                
-                recebeCodigo = code.split(' ')[1]
-                url2_with_code = self.url2.format(recebeCodigo)
 
-                # Adiciona a requisição HTTP à lista de threads
-                futures.append(executor.submit(self.get_page_content, url2_with_code))
+                # Crie um dicionário para armazenar os detalhes desta vaga específica
+                detalhes_vaga_dict = {}
 
-        for future in futures:
-            page2_content = future.result()
-            soup2 = BeautifulSoup(page2_content, 'html.parser')
+                # Adicione os detalhes desta vaga ao dicionário
+                detalhes_vaga_dict['title'] = title
+                detalhes_vaga_dict['paragrafo'] = paragrafo
+                detalhes_vaga_dict['imagem'] = imagem
+                detalhes_vaga_dict['code'] = code
+                url2_with_code = self.url2.format(code.split(' ')[1])
 
-            detalhes_vaga = soup2.find_all('div', class_='common-limiter') 
+                page2_content = self.get_page_content(url2_with_code)
+                soup2 = BeautifulSoup(page2_content, 'html.parser')
+                detalhes_vaga = soup2.find_all('p', class_='common-text') 
 
-            for detalhe in detalhes_vaga:
-                subtitulo = detalhe.h3.text if (detalhe.h3 != None) and (tag_detalhe1 in detalhe.h3.get('class')) else 'n tem empresa'
-                subParagrafo = detalhe.p.text if (detalhe.p != None) and (tag_detalhe2 in detalhe.p.get('class')) else 'n tem descrição'
-                print('se n for, é gray', subParagrafo)
+                detalhes_texto = [detalhe.text if detalhe else 'n tem descrição' for detalhe in detalhes_vaga]
+                detalhes_vaga_dict['detalhes_texto'] = detalhes_texto
+    
+                vagas_dict_estagiar[code] = detalhes_vaga_dict
 
         self.news = vagas_dict_estagiar
-
-recebe = Site()
-recebe.update_vagas()
