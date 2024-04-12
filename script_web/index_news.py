@@ -44,18 +44,16 @@ class IndexNews:
             print('Atualizando vaga...')
             self.site_principal.update_vagas()
 
-            for key, value in self.site_principal.news.items():
+            for code, value in self.site_principal.news.items():
                 dict_aux = {}
-                dict_aux['data'] = datetime.now().strftime('%Y-%m-%d %H:%M:%S')
-                dict_aux['imagem'] = value['imagem']
                 dict_aux['site'] = 'estagiar'
-                dict_aux['vaga'] = value['title']
-                dict_aux['descricao'] = value['paragrafo']
-                dict_aux['link'] = value['detalhes_texto'][0] if value.get('detalhes_texto') else ''  # Verifica se 'detalhes_texto' existe e não está vazio antes de acessar o primeiro elemento
-                dict_aux['detalhes'] = value['detalhes_texto'][1] if len(value.get('detalhes_texto', [])) > 1 else ''  # Acessa o segundo elemento de 'detalhes_texto' se existir
+                dict_aux['imagem'] = value['imagem'] if 'imagem' in value else ''
+                dict_aux['data'] = datetime.now().strftime('%Y-%m-%d %H:%M:%S')
+                dict_aux['vaga'] = value['title'] if 'title' in value else ''
+                dict_aux['code'] = code
+                dict_aux['detalhes'] = value['detalhes_texto'] if 'detalhes_texto' in value else []
 
                 if len(self.vagas) == 0:
-                    
                     print("Vagas vazias, inserindo nova vaga:", dict_aux)
                     self.vagas.append(dict_aux)
                     continue
@@ -72,7 +70,7 @@ class IndexNews:
 
             self.vagas.sort(key=lambda x: datetime.strptime(x['data'], '%Y-%m-%d %H:%M:%S'), reverse=True)
             self._update_file(self.vagas, self.arquivo_vagas)
-            time.sleep(5)
+            time.sleep(1800)
 
 # Instanciando a classe
 self = IndexNews()

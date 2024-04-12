@@ -12,7 +12,7 @@ export async function getStaticProps(): Promise<{ props: { vagas: any[] } }> {
   const vagas: any[] = JSON.parse(fileData);
 
   const vagasComCodigo: any[] = vagas.map((vaga: any) => {
-    const codigo: string = vaga.link.split('/').pop(); 
+    const codigo: string = vaga.code.split(' ').pop(); 
     return { ...vaga, codigo };
   });
 

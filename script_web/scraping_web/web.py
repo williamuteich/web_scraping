@@ -20,9 +20,8 @@ class Site:
         detalhes_vaga = soup2.find_all('div', class_='common-limiter') 
 
         for detalhe in detalhes_vaga:
-            subtitulo = detalhe.h3.text if (detalhe.h3 != None) else 'n tem empresa'
-            subParagrafo = detalhe.p.text if (detalhe.p != None) else 'n tem descrição'
-            print('se n for, é gray', subParagrafo)
+            subtitulo = detalhe.h3.text if (detalhe.h3 != None) else 'não há empresa'
+            subParagrafo = detalhe.p.text if (detalhe.p != None) else 'não há descrição'
 
     def update_vagas(self):
         vagas_dict_estagiar = {}
@@ -33,11 +32,6 @@ class Site:
         tag_class2 = 'text'  # Subtítulo
         tag_class3 = 'code'  # Código
 
-        tag_detalhe2 = 'common-text' 
-
-        # Lista para armazenar os códigos coletados
-        codes_collected = []
-
         for vaga in vagas:
             if (vaga.h4 is not None) and (tag_class1 in vaga.h4.get('class')):
                 title = vaga.h4.text
@@ -45,10 +39,8 @@ class Site:
                 imagem = vaga.img.get('src') if vaga.img and vaga.img.get('class') else ''
                 code = vaga.find('p', class_=tag_class3).text if vaga.find('p', class_=tag_class3) else 'vazio'
 
-                # Crie um dicionário para armazenar os detalhes desta vaga específica
                 detalhes_vaga_dict = {}
 
-                # Adicione os detalhes desta vaga ao dicionário
                 detalhes_vaga_dict['title'] = title
                 detalhes_vaga_dict['paragrafo'] = paragrafo
                 detalhes_vaga_dict['imagem'] = imagem
