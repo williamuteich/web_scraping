@@ -21,6 +21,7 @@ const CustomModal: React.FC<CustomModalProps> = ({ isOpen, onRequestClose, child
           display: 'flex',
           justifyContent: 'center',
           alignItems: 'center',
+          background: '#8d8d8d8c'
         },
       }}
     >

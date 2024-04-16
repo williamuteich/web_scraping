@@ -12,8 +12,10 @@ class IndexNews:
         print("Iniciando IndexNews...")
         self.site_principal = Site()
 
-        # Define o caminho para salvar o arquivo vagas.json no diretório pai da raiz do script
-        self.arquivo_vagas = os.path.abspath(os.path.join(os.getcwd(), 'vagas.json'))
+        # Define o caminho para salvar e ler o arquivo vagas.json na pasta "../web_scraping"
+        diretorio_pai = os.path.abspath(os.path.join(os.getcwd(), os.pardir))  # Caminha um diretório acima do diretório atual
+        pasta_web_scraping = os.path.join(diretorio_pai, 'web_scraping')
+        self.arquivo_vagas = os.path.abspath(os.path.join(pasta_web_scraping, 'vagas.json'))
 
         self.vagas = self._read_file(self.arquivo_vagas) if os.path.exists(self.arquivo_vagas) else []
         df = pd.DataFrame(self.vagas)
@@ -24,7 +26,7 @@ class IndexNews:
         self.news_thread.start()
 
     def _update_file(self, lista, mode):
-        print("Atualizando arquivo...")
+        print("Atualizando arquivo...", mode)
         df = pd.DataFrame(lista)
         df.to_json(mode, orient='records')
 
@@ -32,7 +34,7 @@ class IndexNews:
         print("Lendo arquivo...")
         try:
             df = pd.read_json(mode)
-            print("Arquivo lido:")
+            print("Arquivo lido:", mode)
             return df.to_dict(orient='records')
         except ValueError:
             print("Arquivo vazio ou formato inválido.")
