@@ -4,10 +4,26 @@ import Modal from 'react-modal';
 interface CustomModalProps {
   isOpen: boolean;
   onRequestClose: () => void;
-  children: React.ReactNode; // Adicionando a propriedade children ao tipo CustomModalProps
+  children: React.ReactNode;
 }
 
 const CustomModal: React.FC<CustomModalProps> = ({ isOpen, onRequestClose, children }) => {
+
+  useEffect(() => {
+    const handleBodyOverflow = () => {
+      if (isOpen) {
+        document.body.style.overflow = 'hidden'; 
+      } else {
+        document.body.style.overflow = ''; 
+      }
+    };
+
+    handleBodyOverflow(); // Executa a função ao montar o componente
+
+    return () => {
+      document.body.style.overflow = ''; // Limpa o estilo de overflow ao desmontar o componente
+    };
+  }, [isOpen]);
 
   return (
     <Modal
@@ -15,6 +31,7 @@ const CustomModal: React.FC<CustomModalProps> = ({ isOpen, onRequestClose, child
       onRequestClose={onRequestClose}
       ariaHideApp={false}
       contentLabel='Book Modal'
+      shouldCloseOnOverlayClick={false}
       style={{
         overlay: {
           backgroundColor: 'rgb(71 71 71 / 33%)',

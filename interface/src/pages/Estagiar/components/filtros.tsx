@@ -22,7 +22,7 @@ const FiltrosVaga: React.FC<FiltrosVagaProps> = ({ vagas, setVagasFiltradas }) =
   const tratamento = opcoesUnicas.map((str: string) => str.split('-')[2]);
 
   return ( 
-    <div className='mb-4'>
+    <div>
       <select 
         style={{ maxWidth: '200px' }} 
         className="bg-white border border-solid rounded-lg py-1 px-4 pr-2 outline-none focus:ring-1 focus:ring-[var(--corPrincipal)] focus:ring-opacity-50 w-full text-gray-500 text-base"

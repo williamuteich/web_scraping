@@ -1,14 +1,15 @@
 import { useState } from 'react';
-import { FaBalanceScale ,FaBriefcase, FaList, FaExclamationCircle, FaSearch, FaThumbsUp  } from 'react-icons/fa';
+import { FaBalanceScale ,FaBriefcase, FaList, FaExclamationCircle, FaSearch, FaThumbsUp, FaTimes  } from 'react-icons/fa';
 import RedesSociais from './redesSociais';
 
 interface MoreInfoProps {
   titulo: string;
   codeVaga: string;
   detalheVaga: string[];
+  onRequestClose: () => void;
 }
 
-const MoreInfo: React.FC<MoreInfoProps> = ({ titulo, codeVaga, detalheVaga }) => {
+const MoreInfo: React.FC<MoreInfoProps> = ({ titulo, codeVaga, detalheVaga, onRequestClose }) => {
   const [hovered, setHovered] = useState(false);
 
   let textoQuebrado2 = detalheVaga[2].toString();
@@ -27,7 +28,10 @@ const MoreInfo: React.FC<MoreInfoProps> = ({ titulo, codeVaga, detalheVaga }) =>
   const textoQuebrado1 = detalheVaga[3].split(/\r\n/g).join('<br>').replace('<br>', '');
 
   return (
-    <div className="flex flex-col gap-4 p-4">
+    <div className="flex flex-col gap-4 p-4 relative">
+      <button className="absolute top-2 right-2 text-gray-500" onClick={onRequestClose}>
+        <FaTimes size={20} />
+      </button>
       <div className='flex gap-4 items-center'>
       <span className='p-2 border border-gray-400 rounded-lg'><FaBalanceScale size={45} color="#919191"/></span>
       <h1 className='text-gray-700 border-b border-solid border-gray-700'>{titulo}</h1>

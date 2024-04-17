@@ -17,7 +17,7 @@ const RedesSociais = () => {
             <a href='https://www.instagram.com/' target='_blank'>
                 <FaInstagram size={26} color="#c13584" style={{ transition: 'transform 0.3s', transform: 'scale(1)' }} onMouseOver={(e) => e.currentTarget.style.transform = 'scale(1.3)'} onMouseOut={(e) => e.currentTarget.style.transform = 'scale(1)'} />
             </a>
-            <a href='https://www.youtube.com/user/seu_canal' target='_blank'>
+            <a href='https://www.youtube.com/channel/UCTmhu-z-L8qwIUGPfKtYJ5A' target='_blank'>
                 <FaYoutube size={26} color="#ff0000" style={{ transition: 'transform 0.3s', transform: 'scale(1)' }} onMouseOver={(e) => e.currentTarget.style.transform = 'scale(1.3)'} onMouseOut={(e) => e.currentTarget.style.transform = 'scale(1)'} />
             </a>
         </div>

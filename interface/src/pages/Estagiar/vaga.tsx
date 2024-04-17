@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import fs from 'fs';
 import path from 'path';
-import NavBuscar from './components/buscar';
+import NavBuscar from './components/navMenu';
 import MoreInfo from './components/infoModal';
 import CustomModal from '@/components/modal/CustomModal';
 import FiltrosVaga from './components/filtros';
@@ -36,9 +36,12 @@ const VagasComponent = ({ vagas }: { vagas: any[] }) => {
   const [openIndex, setOpenIndex] = useState<number | null>(null);
   const [buscar, setBuscar] = useState('');
   const [vagasFiltradas, setVagasFiltradas] = useState<any[]>(vagas);
+  const [menuFixed, setMenuFixed] = useState(false); // Adicionado o estado para o menu suspenso
+
 
   const toggleAccordion = (index: number) => {
     setOpenIndex(prevIndex => (prevIndex === index ? null : index));
+    setMenuFixed(false)
   };
 
   const filtrarVagas = (termo: string) => {
@@ -52,15 +55,20 @@ const VagasComponent = ({ vagas }: { vagas: any[] }) => {
     setVagasFiltradas(vagasFiltradasInput);
   };
 
+  const handleMenuSuspenso = (value: boolean) => {
+    setMenuFixed(value);
+  };
+
   return (
-    <div>
-      <div className="shadow-lg"> 
-        <NavBuscar onChange={filtrarVagas} buscar={buscar} />
-        <div className="p-1 mb-6 text-center border border-solid  bg-[#00000017]">
-          <span className='text-sm capitalize font-semibold text-gray-500'>Descubra oportunidades de estágio! Explore as melhores vagas para impulsionar sua carreira.</span>
-        </div>
+    <div className='relative'>
+      {/* Passando a função para controlar o estado do menu suspenso */}
+      <NavBuscar onChange={filtrarVagas} buscar={buscar} menuFixed={menuFixed} setMenuFixed={setMenuFixed}/>
+      <div className='flex gap-4 mb-4'>
+        <FiltrosVaga vagas={vagas} setVagasFiltradas={setVagasFiltradas}/>
+        <button className="bg-[var(--corPrincipal)] text-white text-sm pl-6 pr-6 rounded-lg border border-solid border-black hover:bg-white hover:text-[var(--corPrincipal)] transition duration-300">
+              Atualizar
+        </button>
       </div>
-      <FiltrosVaga vagas={vagas} setVagasFiltradas={setVagasFiltradas}/>
       <div className='grid grid-cols-3 gap-4 '>
         {vagasFiltradas.length > 0 ? (
           vagasFiltradas.map((vaga: any, index: number) => (
@@ -78,13 +86,13 @@ const VagasComponent = ({ vagas }: { vagas: any[] }) => {
               <div className="mt-4 text-center">
                 <button 
                   onClick={() => toggleAccordion(index)} 
-                 className="text-sm w-full pt-2 pb-2 justify-center flex items-center space-x-1 bg-[var(--corPrincipal)] px-2 py-1 rounded-md transition duration-300 hover:bg-white"
+                 className="text-sm w-full pt-2 pb-2 justify-center flex items-center space-x-1 bg-gray-700 px-2 py-1 rounded-md transition duration-300 hover:bg-white"
                 >
                   <span>Mais Informações</span>
                 </button>
                 {openIndex === index && (
-                  <CustomModal isOpen={openIndex === index} onRequestClose={() => toggleAccordion(index)}>
-                    <MoreInfo titulo={vaga.vaga} detalheVaga={vaga.detalhes} codeVaga={vaga.codigo}/>
+                  <CustomModal isOpen={openIndex === index} onRequestClose={() => { toggleAccordion(index); handleMenuSuspenso(false); }}>
+                    <MoreInfo titulo={vaga.vaga} detalheVaga={vaga.detalhes} codeVaga={vaga.codigo} onRequestClose={() => { toggleAccordion(index); handleMenuSuspenso(false); }}/>
                   </CustomModal>
                 )}
               </div>
