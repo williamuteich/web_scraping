@@ -25,4 +25,25 @@ span{
   border: 1px solid #0000002a;
   box-shadow: 1px 1px 12px #00000033;
   border-radius: 10px;
+  justify-content: space-between;
+  transition: 0.4s all;
+  cursor: pointer;
+}
+
+.card:hover{
+  transform: scale(1.03);
+}
+
+
+.card button{
+  border: 1px solid transparent;
+}
+
+.card button:hover{
+  transition: 0.4s all;
+  border: 1px solid var(--corPrincipal);
+}
+.card button:hover span{
+  transition: 0.4s all;
+  color: #151c2c !important;
 }

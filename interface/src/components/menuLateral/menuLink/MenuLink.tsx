@@ -15,7 +15,7 @@ const MenuLink = ({ item }: { item: MenuItem }) => {
             {typeof item.icon === 'string' ? (
                 <img src={item.icon} alt={item.title} className="w-auto h-8"/> 
             ) : (
-                <item.icon size={20} /> 
+                <item.icon size={23} /> 
             )}
             <div className={`text-white transition duration-300 border-b-2 border-transparent hover:border-white ${pathname === item.path ? 'border-white' : ''}`}>
                 <span className="text-base">{item.title}</span>

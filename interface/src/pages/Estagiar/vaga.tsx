@@ -72,14 +72,19 @@ const VagasComponent = ({ vagas }: { vagas: any[] }) => {
                 <img src={vaga.imagem} className="w-full h-full object-contain" alt="Imagem da vaga" />
               </div>
               <h3 className='text-base font-semibold mb-2 text-blue-800 truncate'>{vaga.vaga}</h3>
-              <p className='text-sm text-black truncate h-auto'>{vaga.detalhes}</p>
+              <p className='text-sm text-gray-500 h-auto'>
+                {vaga.detalhes[0].length > 250 ? vaga.detalhes[0].slice(0, 250) + '...' : vaga.detalhes[0]}
+              </p>
               <div className="mt-4 text-center">
-                <button onClick={() => toggleAccordion(index)} className="text-sm w-full pt-2 pb-2 justify-center flex items-center space-x-1 bg-[var(--corPrincipal)] px-2 py-1 rounded-md transition duration-300">
+                <button 
+                  onClick={() => toggleAccordion(index)} 
+                 className="text-sm w-full pt-2 pb-2 justify-center flex items-center space-x-1 bg-[var(--corPrincipal)] px-2 py-1 rounded-md transition duration-300 hover:bg-white"
+                >
                   <span>Mais Informações</span>
                 </button>
                 {openIndex === index && (
                   <CustomModal isOpen={openIndex === index} onRequestClose={() => toggleAccordion(index)}>
-                    <MoreInfo codeVaga={vaga.codigo} detalheVaga={vaga.detalhes}/>
+                    <MoreInfo titulo={vaga.vaga} detalheVaga={vaga.detalhes} codeVaga={vaga.codigo}/>
                   </CustomModal>
                 )}
               </div>
