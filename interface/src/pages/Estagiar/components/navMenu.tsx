@@ -5,8 +5,8 @@ import MenuSuspenso from './menuSuspenso';
 interface NavBuscarProps {
   buscar: string;
   onChange: (termo: string) => void;
-  menuFixed: boolean; // Adicione a propriedade menuFixed à interface
-  setMenuFixed: (value: boolean) => void; // Adicione a propriedade setMenuFixed à interface
+  menuFixed: boolean;
+  setMenuFixed: (value: boolean) => void;
 }
 
 
