@@ -40,8 +40,9 @@ const Footer = () => {
                     </div>
                 </div>
             </div>
-            <div className="container mx-auto mt-4 text-xs text-center mt-14 ">
-                <p>&copy; 2024 Projeto Web Scraping. Todos os direitos reservados  -  Desenvolvido por William Uteich</p>
+            <div className="container mx-auto mt-4 text-xs text-center mt-8 ">
+                <p>&copy; 2024 Projeto Web Scraping. Todos os direitos reservados </p>
+                <p>Desenvolvido por William Uteich</p>
             </div>
         </footer>
     );
