@@ -18,7 +18,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={`text-black ${inter.className}`}>
+      <body className={`text-black  ${inter.className}`}>
         <body>
         <div className="flex  w-full h-auto box-sh">
           <div className="pt-0 pl-1 text-lg relative text-corSecundaria  bg-[var(--corPrincipal)]" style={{ position: 'relative', width: 'calc(100% - 85%)', height: '100vh' }}>

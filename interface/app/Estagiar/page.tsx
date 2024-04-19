@@ -21,7 +21,7 @@ const VagasComponent = () => {
       setVagas(vagasData);
       setVagasFiltradas(vagasData);
       setLoading(true)
-    }, 650) 
+    }, 500) 
   }, []);
   
 
