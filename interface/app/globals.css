@@ -49,3 +49,10 @@ span{
   color: #151c2c !important;
 }
 
+.cardDashboard{
+  transition: 0.2s all;
+  cursor: pointer;
+}
+.cardDashboard:hover{
+  transform: scale(1.02);
+}
