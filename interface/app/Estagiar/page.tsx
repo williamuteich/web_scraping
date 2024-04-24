@@ -15,7 +15,7 @@ const VagasComponent = () => {
   const [openIndex, setOpenIndex] = useState<number | null>(null);
   const [menuFixed, setMenuFixed] = useState<boolean>(false);
   const [loading, setLoading] = useState(false)
-  console.log('antes::::', loading)
+  
   useEffect(() => {
     setTimeout(() => {
       setVagas(vagasData);

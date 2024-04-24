@@ -18,18 +18,16 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={`text-black  ${inter.className}`}>
-        <body>
-        <div className="flex  w-full h-auto box-sh">
-          <div className="pt-0 pl-1 text-lg relative text-corSecundaria  bg-[var(--corPrincipal)]" style={{ position: 'relative', width: 'calc(100% - 85%)', height: '100vh' }}>
+      <body className={`text-black ${inter.className}`}>
+        <div className="flex flex-col md:flex-row">
+          <div className="md:w-1/6 bg-[var(--corPrincipal)]">
             <Menulateral />
           </div>
-          <div className="pt-4 pb-4 w-full pl-4 pr-4 flex flex-col gap-8">
-              {children}
-              <Footer/>
+          <div className="md:w-5/6">
+            <div className="pt-4 pb-4 pl-4 pr-4">{children}</div>
+            <Footer />
           </div>
         </div>
-      </body>
       </body>
     </html>
   );

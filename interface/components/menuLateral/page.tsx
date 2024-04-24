@@ -32,7 +32,7 @@ const Menulateral = () => {
         }
     ];
     return ( 
-        <div className="h-screen bg-[var(--corPrincipal)] left-0 top-0 pl-6 pr-6 py-8" style={{ position: 'fixed', width: '275px', boxShadow: '7px 0px 10px #151c2c70' }}>
+        <div className="h-screen bg-[var(--corPrincipal)] left-0 top-0 pl-6 pr-6 py-8 md:w-64" style={{ position: 'fixed', width: '275px', boxShadow: '7px 0px 10px #151c2c70' }}>
             <div className="flex items-center justify-center">
                 <img src="/vagaonlines.png" alt="vagasLogo" className="w-36 h-auto"/>
             </div>
