@@ -38,7 +38,7 @@ const MoreInfo: React.FC<MoreInfoProps> = ({ titulo, codeVaga, detalheVaga, onRe
       <span className='p-2 border border-gray-400 rounded-lg'><FaBalanceScale size={45} color="#919191"/></span>
       <h1 className='text-gray-700 border-b border-solid border-gray-700'>{titulo}</h1>
       </div>
-      <div className="flex gap-4">
+      <div className="flex gap-4 containerModalInfo">
         <div className="border-2 border-orange-500 border-solid p-6 w-1/2 bg-orange-500 rounded-lg">
           <span className='flex gap-2 items-center'>
             <FaBriefcase size={45} className='border-2 border-solid border-white rounded-lg p-2' />
@@ -54,7 +54,7 @@ const MoreInfo: React.FC<MoreInfoProps> = ({ titulo, codeVaga, detalheVaga, onRe
           <div className='pl-6 pt-1 pr-6 leading-3'><span className="text-blue-900 text-base">{detalheVaga[1]}</span></div>
         </div>
       </div>
-      <div className="flex gap-4">
+      <div className="flex gap-4 containerModalInfo">
         <div className="border-2 border-orange-500 border-solid p-6 rounded-lg w-2/1" style={{width: '40%'}}>
           <span style={{ color: 'rgb(249, 115, 22)' }} className='flex gap-2 items-center'>
             <FaList size={45} className='border-2 border-solid border-orange-500 rounded-lg p-2' />

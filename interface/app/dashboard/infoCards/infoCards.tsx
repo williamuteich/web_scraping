@@ -22,7 +22,7 @@ const ContainerCards = () => {
     }, []);
 
     return ( 
-        <div className="flex justify-between gap-4">
+        <div className="cardsDashboard flex justify-between gap-4">
             <CardTotal vagasDados={vagasDados}/>
             <CardData vagaDados={vagasDados}/>
             <CardBlog/>

@@ -49,7 +49,7 @@ const CardIndiceMonth = () => {
     }, []);
 
     return ( 
-        <div className="w-full border border-gray-300 rounded-lg p-6 shadow-lg">
+        <div className="dashboardGrafico border border-gray-300 rounded-lg p-6 shadow-lg" style={{width: '66.4%'}}>
             <div className="flex items-center mb-4">
                 <FaCalendar className="mr-2" />
                 <h2 className="text-lg text-gray-600 font-semibold">Índice de Vagas por Mês</h2>
@@ -60,4 +60,3 @@ const CardIndiceMonth = () => {
 }
  
 export default CardIndiceMonth;
-

@@ -52,8 +52,121 @@ span{
 .cardDashboard{
   transition: 0.2s all;
   cursor: pointer;
+  width: 100%;
 }
 .cardDashboard:hover{
   transform: scale(1.02);
   transition: 0.2s all;
 }
+
+.bm-cross{
+  background-color: white;
+  cursor: pointer;
+}
+
+.containerGrafico{
+  width: 100%;
+  height: 300px;
+}
+
+@media (max-width: 1085px){
+  .menuEstagiarV{
+    display: none;
+  }
+}
+
+@media (max-width: 1024px) {
+
+
+  .containerModalInfo{
+    flex-direction: column;
+  }
+
+  .containerModalInfo div{
+    width: 100% !important;
+    padding: 10px;
+  }
+
+  .containerCards1{
+    flex-direction: row;
+    justify-content: space-between;
+  }
+}
+
+@media (max-width: 1200px) {
+  .menuContent {
+      margin-left: calc(15% + 20px) !important;
+  }
+
+  .contentGrafico{
+    display: flex;
+    flex-direction: column !important;
+  }
+
+  .dashboardGrafico {
+    width: 100% !important;
+    max-width: none !important;
+  }
+  .menuLateralDahsboard{
+    width: 15.8% !important;
+  }
+
+  .containerFooter{
+    flex-direction: column;
+    align-items: center;
+  }
+  .contentDescImg{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100% !important;
+  }
+
+  .contentDescription{
+    flex-wrap: wrap;
+  }
+
+  .containerCards1 h2{
+    font-size: 20px;
+  }
+}
+
+@media (max-width: 800px){
+  .contentVagas{
+    display: flex;
+    flex-direction: column;
+  }
+  .containerGrafico{
+    width: 100%;
+    height: 240px;
+  }
+
+  .cardsDashboard{
+    display: flex;
+    flex-wrap: wrap;
+  }
+}
+
+@media (max-width: 600px) {
+  .contentDescription{
+    flex-direction: column;
+  }
+
+  .contentDescription div {
+    width: 100%;
+  }
+
+  .contentDescImg{
+    flex-wrap: wrap;
+  }
+
+  .containerGrafico{
+    width: 100%;
+    height: 215px;
+  }
+
+  .containerCards1 h2{
+    font-size: 20px;
+  }
+}
+

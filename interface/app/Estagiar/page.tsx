@@ -59,12 +59,12 @@ const VagasComponent = () => {
         <LoadingPage/>
      
       ):(
-        <div className='grid grid-cols-3 gap-4 '>
+        <div className='contentVagas grid grid-cols-3 gap-4 '>
           {vagasFiltradas.length > 0 ? (
             vagasFiltradas.map((vaga, index) => (
               <div key={index} className='p-3 card flex flex-col'>
                 <div className='flex justify-end gap-4 items-center'>
-                  <span className='text-sm text-black text-end font-thin text-gray-500 underline'>Código: {vaga.code}</span>
+                  <span className='text-sm text-black text-end text-gray-400 underline'>{vaga.code}</span>
                 </div>
                 <div className="h-14 w-20 overflow-hidden mb-2">
                   <img src={vaga.imagem} className="w-full h-full object-contain" alt="Imagem da vaga" />

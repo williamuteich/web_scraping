@@ -3,8 +3,8 @@ import { FaEnvelope, FaGithub, FaLinkedin } from "react-icons/fa";
 const Footer = () => {
     return (
         <footer className="text-gray-300 p-8 rounded-md" style={{background: '#182237'}}>
-            <div className="flex gap-6 ">
-                <div className="w-full lg:w-1/3 mb-4 md:mb-0 text-left lg:text-center">
+            <div className="containerFooter flex gap-6 ">
+                <div className="contentDescImg w-full lg:w-1/3 mb-4 md:mb-0 text-left lg:text-center">
                     <img src="/vagaonlines.png" alt="VagaOnline" className="h-16 mb-2" />
                     <p className="text-sm" style={{maxWidth: '200px', lineHeight: '125%'}}>Todas as vagas são obtidas através de web scraping e são propriedade dos respectivos sites.</p>
                     <div className="flex justify-center mt-4" style={{maxWidth: '200px'}}>
@@ -19,7 +19,7 @@ const Footer = () => {
                         </a>
                     </div>
                 </div>
-                <div className="w-full mb-4 md:mb-0 text-center flex gap-10 justify-center ">
+                <div className="contentDescription w-full mb-4 md:mb-0 text-center flex gap-10 justify-center ">
                     <div className="mb-4 flex flex-col gap-1 w-2/5">
                         <p className="text-white hover:underline text-left text-base">• Tecnologias</p>
                         <p className="text-sm text-left">Python: Utilizado para realizar web scraping e coletar os dados das vagas dos sites.</p>

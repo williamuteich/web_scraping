@@ -3,7 +3,7 @@ import CardIndiceVagas from "./cardsGraficos/cardIndiceVagas";
 
 const InforCards = () => {
     return ( 
-        <div className="flex justify-between gap-4">
+        <div className="contentGrafico flex flex-col lg:flex-row gap-4">
             <CardIndiceMonth/>
             <CardIndiceVagas/>
         </div>

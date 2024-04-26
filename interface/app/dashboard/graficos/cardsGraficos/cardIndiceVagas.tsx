@@ -56,16 +56,16 @@ const CardIndiceVagas = () => {
     }, []);
 
     return ( 
-        <div className="border border-gray-300 rounded-lg p-6 shadow-lg" style={{width: '49.8%'}}>
+        <div className="dashboardGrafico border border-gray-300 rounded-lg p-6 shadow-lg" style={{width: '100%', maxWidth: '505px'}}>
             <div className="flex items-center mb-4">
                 <FaCalendar className="mr-2" />
                 <h2 className="text-lg text-gray-600 font-semibold">Índice de Vagas por Mês</h2>
             </div>
-            <div className='flex items-center justify-center' style={{width: 'auto', height: '300px'}}>
+            <div className='containerGrafico flex items-center justify-center'>
                 <canvas ref={chartRef}></canvas>
             </div>
             <div className='mt-6'>
-                <h4 className='mb-4'>Vagas:</h4>
+                <h4 className='mb-4'>Vagas adicionadas:</h4>
                 <div className='mb-2'>
                     <span className='pl-6 pr-6 bg-red-400'></span>
                     <span className='text-black'>Ti</span>
@@ -88,4 +88,6 @@ const CardIndiceVagas = () => {
 }
  
 export default CardIndiceVagas;
+
+
 

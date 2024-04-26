@@ -5,47 +5,13 @@ import MenuSuspenso from './menuSuspenso';
 interface NavBuscarProps {
   buscar: string;
   onChange: (termo: string) => void;
-  menuFixed: boolean;
-  setMenuFixed: (value: boolean) => void;
 }
 
 
-const NavBuscar: React.FC<NavBuscarProps> = ({ onChange, buscar, menuFixed, setMenuFixed }) => {
-
-  useEffect(() => {
-    const handleScroll = () => {
-      const scrollY = window.scrollY;
-      const alturaDiv = document.getElementById('menuSuspenso')?.getBoundingClientRect().top;
-      const menuSuspensoHeight = document.getElementById('menuSuspenso')?.clientHeight;
-
-      if (alturaDiv !== undefined && menuSuspensoHeight !== undefined) {
-        const limiteInferior = -menuSuspensoHeight * 0.75; 
-        const limiteSuperior = menuSuspensoHeight * 0.25; 
-
-        if (scrollY > alturaDiv && alturaDiv < limiteInferior) {
-          setMenuFixed(true);
-        } else if (alturaDiv > limiteSuperior) {
-          setMenuFixed(false);
-        }
-      }
-    };
-
-    const handlePageLoad = () => {
-      handleScroll();
-    };
-
-    window.addEventListener('scroll', handleScroll);
-    window.addEventListener('load', handlePageLoad);
-
-    return () => {
-      window.removeEventListener('scroll', handleScroll);
-      window.removeEventListener('load', handlePageLoad);
-    };
-  }, []);
-
+const NavBuscar: React.FC<NavBuscarProps> = ({ onChange, buscar }) => {
 
   return ( 
-    <div className="shadow-lg relative"> 
+    <div className="shadow-lg relative menuEstagiarV"> 
       <div className='flex gap-1 justify-end rounded-t-lg p-2 pl-8 pr-8' style={{background: '#182237'}}>
         <a href='https://www.facebook.com/estagiar.br' target='_blank'>
           <FaFacebookF 
@@ -115,9 +81,6 @@ const NavBuscar: React.FC<NavBuscarProps> = ({ onChange, buscar, menuFixed, setM
       <div className="p-1 mb-10 text-center border border-solid  bg-[#00000017]" id='menuSuspenso'>
         <span className='text-sm capitalize font-semibold text-gray-500'>Descubra oportunidades de estágio! Explore as melhores vagas para impulsionar sua carreira.</span>
       </div>
-      {menuFixed &&(
-        <MenuSuspenso onChange={onChange} buscar={buscar} />
-      )}
     </div>
   );
 };
