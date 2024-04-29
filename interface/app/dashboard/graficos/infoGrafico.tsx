@@ -1,5 +1,5 @@
 import CardIndiceMonth from "./cardsGraficos/cardIndiceMonth";
-import CardIndiceVagas from "./cardsGraficos/cardIndiceVagas";
+import CardIndiceVagas from "./cardsGraficos/cardindiceVagas/cardIndiceVagas";
 
 const InforCards = () => {
     return ( 

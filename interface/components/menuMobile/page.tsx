@@ -4,7 +4,6 @@ import Menulateral from "../menuLateral/page";
 
 const MenuMobileSuspenso = () => {
     
-    
     return ( 
         <div className="p-3">
             <div className="flex gap-2">

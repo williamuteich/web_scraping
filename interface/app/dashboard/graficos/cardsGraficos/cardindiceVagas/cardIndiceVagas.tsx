@@ -1,17 +1,42 @@
 "use client"
 
-import { useEffect, useRef } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import Chart from 'chart.js/auto';
 import { FaCalendar } from 'react-icons/fa';
+import VagasRecentes from './cardsTopVagas';
+import vagasData from '../../../../../data/vagas.json'
 
 const CardIndiceVagas = () => {
     const chartRef = useRef<HTMLCanvasElement | null>(null);
     const chartInstance = useRef<Chart<"pie", {}[], string> | null>(null);
+    const [searchVagas, setsearchVagas] = useState<any[]>([vagasData])
+
+    const countVagas: { [key: string]: number } = {};
+
+    vagasData.forEach(vaga => {
+        if (vaga.vaga) {
+            const pegaVaga = vaga.vaga.split(' - ').map(item => item.trim()); 
+            let nomeVaga = pegaVaga[pegaVaga.length - 1].split(' ')[0]; 
+    
+            // Verificando se o nome da vaga já existe em countVagas
+            if (countVagas[nomeVaga]) {
+                countVagas[nomeVaga] += 1; // Se existir, incrementa a contagem
+            } else {
+                countVagas[nomeVaga] = 1; // Se não existir, define a contagem como 1
+            }
+        }
+    });
+
+    const ordenaVaga = Object.entries(countVagas).sort((a, b) => b[1] - a[1]);
+
+    const topVagas = ordenaVaga.slice(0, 4);
+
+    const vagas = topVagas.map(([nomeVaga]) => nomeVaga);
+    const nVagas = topVagas.map(([, count]) => count);
+    
 
     useEffect(() => {
         const ctx = chartRef.current?.getContext('2d');
-        const vagas = ["TI", "Contabilidade", "Marketing", "Direito"];
-        const nVagas = [10, 15, 20, 18];
 
         if (ctx) { 
             if (chartInstance.current !== null) {
@@ -31,16 +56,16 @@ const CardIndiceVagas = () => {
                         label: 'Vagas',
                         data: data.map(item => item.data),
                         backgroundColor: [
-                            'rgba(255, 99, 132, 0.5)', // Rosa
-                            'rgba(255, 159, 64, 0.5)', // Laranja
-                            'rgba(54, 162, 235, 0.5)', // Azul
-                            'rgba(255, 0, 0, 0.5)'     // Vermelho
+                            '#ec407a', // Rosa
+                            '#66bb6a', // Laranja
+                            '#49a3f1', // Azul
+                            '#d6f33f'     // Vermelho
                         ],
                         borderColor: [
-                            'rgba(255, 99, 132, 1)',
-                            'rgba(255, 159, 64, 1)',
-                            'rgba(54, 162, 235, 1)',
-                            'rgba(255, 0, 0, 1)'
+                            '#ec407a', // Rosa
+                            '#66bb6a', // Laranja
+                            '#49a3f1', // Azul
+                            '#d6f33f'     // Vermelho
                         ],
                         borderWidth: 1
                     }]
@@ -58,31 +83,13 @@ const CardIndiceVagas = () => {
     return ( 
         <div className="dashboardGrafico border border-gray-300 rounded-lg p-6 shadow-lg" style={{width: '100%', maxWidth: '505px'}}>
             <div className="flex items-center mb-4">
-                <FaCalendar className="mr-2" />
-                <h2 className="text-lg text-gray-600 font-semibold">Índice de Vagas por Mês</h2>
+                <FaCalendar className="mr-2 text-black-500" size={21} color='#000000a3'/>
+                <h2 className="text-lg text-gray-500 font-semibold">Índice de Vagas por Mês</h2>
             </div>
             <div className='containerGrafico flex items-center justify-center'>
                 <canvas ref={chartRef}></canvas>
             </div>
-            <div className='mt-6'>
-                <h4 className='mb-4'>Vagas adicionadas:</h4>
-                <div className='mb-2'>
-                    <span className='pl-6 pr-6 bg-red-400'></span>
-                    <span className='text-black'>Ti</span>
-                </div>
-                <div className='mb-2'>
-                    <span className='pl-6 pr-6 bg-red-400'></span>
-                    <span className='text-black'>Contabilidade</span>
-                </div>
-                <div className='mb-2'>
-                    <span className='pl-6 pr-6 bg-red-400'></span>
-                    <span className='text-black'>Marketing</span>
-                </div>
-                <div>
-                    <span className='pl-6 pr-6 bg-red-400'></span>
-                    <span className='text-black'>Direito</span>
-                </div>
-            </div>
+            <VagasRecentes nomeVaga={vagas}/>
         </div>
      );
 }

@@ -13,7 +13,8 @@ class IndexNews:
         self.site_principal = Site()
 
         # Define o caminho para salvar o arquivo vagas.json no diretório pai da raiz do script
-        self.arquivo_vagas = os.path.abspath(os.path.join(os.getcwd(), 'vagas.json'))
+        self.arquivo_vagas = os.path.abspath(os.path.join(os.getcwd(), 'interface/data/vagas.json'))
+        print('caminho do arquivo', self.arquivo_vagas)
 
         self.vagas = self._read_file(self.arquivo_vagas) if os.path.exists(self.arquivo_vagas) else []
         df = pd.DataFrame(self.vagas)

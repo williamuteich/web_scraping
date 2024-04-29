@@ -2,7 +2,7 @@
 
 import { useEffect, useRef } from 'react';
 import Chart from 'chart.js/auto';
-import { FaCalendar } from 'react-icons/fa';
+import { FaChartLine    } from 'react-icons/fa';
 
 const CardIndiceMonth = () => {
     const chartRef = useRef<HTMLCanvasElement | null>(null);
@@ -51,8 +51,8 @@ const CardIndiceMonth = () => {
     return ( 
         <div className="dashboardGrafico border border-gray-300 rounded-lg p-6 shadow-lg" style={{width: '66.4%'}}>
             <div className="flex items-center mb-4">
-                <FaCalendar className="mr-2" />
-                <h2 className="text-lg text-gray-600 font-semibold">Índice de Vagas por Mês</h2>
+                <FaChartLine    className="mr-2" color='#000000a3' size={22}/>
+                <h2 className="text-lg text-gray-500 font-semibold">Índice de Vagas por Mês</h2>
             </div>
             <canvas ref={chartRef}></canvas>
         </div>

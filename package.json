@@ -1,8 +1,0 @@
-{
-  "dependencies": {
-    "react-burger-menu": "^3.0.9"
-  },
-  "devDependencies": {
-    "@types/react-burger-menu": "^2.8.7"
-  }
-}

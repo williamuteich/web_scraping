@@ -10,7 +10,7 @@ import LoadingPage from '@/components/loadingPage/loading';
 
 const VagasComponent = () => {
   const [vagas, setVagas] = useState<any[]>([]);
-  const [vagasFiltradas, setVagasFiltradas] = useState<any[]>([]);
+  const [vagasFiltradas, setVagasFiltradas] = useState<any[]>([vagasData]);
   const [buscar, setBuscar] = useState<string>('');
   const [openIndex, setOpenIndex] = useState<number | null>(null);
   const [menuFixed, setMenuFixed] = useState<boolean>(false);
@@ -47,7 +47,7 @@ const VagasComponent = () => {
 
   return (
     <div className='relative'>
-      <NavBuscar onChange={filtrarVagas} buscar={buscar} menuFixed={menuFixed} setMenuFixed={setMenuFixed}/>
+      <NavBuscar onChange={filtrarVagas} buscar={buscar}/>
       <div className='flex gap-4 mb-4'>
         <FiltrosVaga vagas={vagas} setVagasFiltradas={setVagasFiltradas}/>
         <button className="bg-[var(--corPrincipal)] text-white text-sm pl-6 pr-6 rounded-lg border border-solid border-black hover:bg-white hover:text-[var(--corPrincipal)] transition duration-300">

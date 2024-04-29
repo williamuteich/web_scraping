@@ -30,9 +30,6 @@ export default function RootLayout({
   }, []);
 
 
-
-  console.log('largura da minha tela', tamanhoTela);
-
   return (
     <html lang="en">
       <body className={`text-black ${inter.className}`}>
