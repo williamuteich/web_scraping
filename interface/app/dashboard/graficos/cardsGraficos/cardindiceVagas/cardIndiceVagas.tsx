@@ -16,13 +16,12 @@ const CardIndiceVagas = () => {
     vagasData.forEach(vaga => {
         if (vaga.vaga) {
             const pegaVaga = vaga.vaga.split(' - ').map(item => item.trim()); 
-            let nomeVaga = pegaVaga[pegaVaga.length - 1].split(' ')[0]; 
+            const nomeVaga = pegaVaga[pegaVaga.length - 1].split(' ')[0]; 
     
-            // Verificando se o nome da vaga já existe em countVagas
             if (countVagas[nomeVaga]) {
-                countVagas[nomeVaga] += 1; // Se existir, incrementa a contagem
+                countVagas[nomeVaga] += 1; 
             } else {
-                countVagas[nomeVaga] = 1; // Se não existir, define a contagem como 1
+                countVagas[nomeVaga] = 1;
             }
         }
     });

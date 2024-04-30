@@ -4,7 +4,6 @@ interface VagasRecentesProps {
     nomeVaga: any
 }
 const VagasRecentes =({nomeVaga} : VagasRecentesProps) => {
-    console.log(nomeVaga)
 
     return ( 
         <div className='mt-6'>    
