@@ -11,8 +11,6 @@ class IndexNews:
     def __init__(self):
         print("Iniciando IndexNews...")
         self.site_principal = Site()
-
-        # Define o caminho para salvar o arquivo vagas.json no diretório pai da raiz do script
         self.arquivo_vagas = os.path.abspath(os.path.join(os.getcwd(), 'interface/data/vagas.json'))
         print('caminho do arquivo', self.arquivo_vagas)
 
@@ -43,7 +41,7 @@ class IndexNews:
         print("Atualizando vagas...")
         while not self.kill:
             print('Atualizando vaga...')
-            self.site_principal.update_vagas()
+            self.site_principal.update_vagas(self.vagas) 
 
             for code, value in self.site_principal.news.items():
                 dict_aux = {}
@@ -71,7 +69,8 @@ class IndexNews:
 
             self.vagas.sort(key=lambda x: datetime.strptime(x['data'], '%Y-%m-%d %H:%M:%S'), reverse=True)
             self._update_file(self.vagas, self.arquivo_vagas)
-            time.sleep(1800)
+            time.sleep(5)
+
 
 # Instanciando a classe
 self = IndexNews()

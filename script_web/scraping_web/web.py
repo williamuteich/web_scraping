@@ -5,8 +5,9 @@ class Site:
     def __init__(self):
         self.base_url = 'https://www.estagiar-br.com.br'
         self.url = f'{self.base_url}/oportunidades'
-        self.url2 = f'{self.base_url}/Oportunidades/detalhe/estagio/{{}}'  # URL2 agora recebe um espaço reservado {}
+        self.url2 = f'{self.base_url}/Oportunidades/detalhe/estagio/{{}}'
         self.news = {}  
+        self.vagas = {}  
 
     def get_page_content(self, url):
         browsers = {'User-Agent': "Mozilla/5.0 (Windows NT 10.0; win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/ 86.0.4240.198 Safari / 537.36"}
@@ -23,7 +24,8 @@ class Site:
             subtitulo = detalhe.h3.text if (detalhe.h3 != None) else 'não há empresa'
             subParagrafo = detalhe.p.text if (detalhe.p != None) else 'não há descrição'
 
-    def update_vagas(self):
+    def update_vagas(self, vagas):
+        self.vagas = vagas  
         vagas_dict_estagiar = {}
         soup = BeautifulSoup(self.get_page_content(self.url), 'html.parser')
         vagas = soup.find_all('a')
@@ -45,15 +47,20 @@ class Site:
                 detalhes_vaga_dict['paragrafo'] = paragrafo
                 detalhes_vaga_dict['imagem'] = imagem
                 detalhes_vaga_dict['code'] = code
-                url2_with_code = self.url2.format(code.split(' ')[1])
 
-                page2_content = self.get_page_content(url2_with_code)
-                soup2 = BeautifulSoup(page2_content, 'html.parser')
-                detalhes_vaga = soup2.find_all('p', class_='common-text') 
+                vaga_existente = next((news for news in self.vagas if news['vaga'] == title), None)
+                if vaga_existente:
+                    detalhes_vaga_dict['detalhes_texto'] = vaga_existente['detalhes']
+                else:
+                    url2_with_code = self.url2.format(code.split(' ')[1])
+                    page2_content = self.get_page_content(url2_with_code)
+                    soup2 = BeautifulSoup(page2_content, 'html.parser')
+                    detalhes_vaga = soup2.find_all('p', class_='common-text') 
 
-                detalhes_texto = [detalhe.text if detalhe else 'n tem descrição' for detalhe in detalhes_vaga]
-                detalhes_vaga_dict['detalhes_texto'] = detalhes_texto
-    
+                    detalhes_texto = [detalhe.text if detalhe else 'n tem descrição' for detalhe in detalhes_vaga]
+                    detalhes_vaga_dict['detalhes_texto'] = detalhes_texto
+
                 vagas_dict_estagiar[code] = detalhes_vaga_dict
+
 
         self.news = vagas_dict_estagiar
