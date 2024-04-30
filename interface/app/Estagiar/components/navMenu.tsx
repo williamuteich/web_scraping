@@ -62,7 +62,9 @@ const NavBuscar: React.FC<NavBuscarProps> = ({ onChange, buscar }) => {
       <div className="p-2 pl-6 pr-6 flex items-center justify-center border border-solid border-[#00000029] rounded-sm">
         <div className='flex gap-20 justify-between items-center w-full'>
           <div>
-            <img src="/logoestagiar.png" className='w-28 h-auto' alt="estagiar" />
+            <a href='https://www.estagiar-br.com.br/' target='_blank'>
+              <img src="/logoestagiar.png" className='w-28 h-auto' alt="estagiar" />
+            </a>
           </div>
           <div className='flex gap-4 justify-between'>
             <div className="relative">

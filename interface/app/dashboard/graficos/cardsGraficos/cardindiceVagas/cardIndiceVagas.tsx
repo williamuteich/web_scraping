@@ -83,7 +83,7 @@ const CardIndiceVagas = () => {
         <div className="dashboardGrafico border border-gray-300 rounded-lg p-6 shadow-lg" style={{width: '100%', maxWidth: '505px'}}>
             <div className="flex items-center mb-4">
                 <FaCalendar className="mr-2 text-black-500" size={21} color='#000000a3'/>
-                <h2 className="text-lg text-gray-500 font-semibold">Índice de Vagas por Mês</h2>
+                <h2 className="text-lg text-gray-500 font-semibold">Qtds De Vagas:</h2>
             </div>
             <div className='containerGrafico flex items-center justify-center'>
                 <canvas ref={chartRef}></canvas>

@@ -25,7 +25,7 @@ const Menulateral = () => {
                 },
                 {
                     title: "Linkedin",
-                    path: '/Estagiar/vaga',
+                    path: '/Linkedin',
                     icon: FaLinkedin,
                 },
             ]

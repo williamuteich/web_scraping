@@ -69,7 +69,7 @@ class IndexNews:
 
             self.vagas.sort(key=lambda x: datetime.strptime(x['data'], '%Y-%m-%d %H:%M:%S'), reverse=True)
             self._update_file(self.vagas, self.arquivo_vagas)
-            time.sleep(5)
+            time.sleep(1800)
 
 
 # Instanciando a classe

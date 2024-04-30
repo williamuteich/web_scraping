@@ -50,9 +50,9 @@ const VagasComponent = () => {
       <NavBuscar onChange={filtrarVagas} buscar={buscar}/>
       <div className='flex gap-4 mb-4'>
         <FiltrosVaga vagas={vagas} setVagasFiltradas={setVagasFiltradas}/>
-        <button className="bg-[var(--corPrincipal)] text-white text-sm pl-6 pr-6 rounded-lg border border-solid border-black hover:bg-white hover:text-[var(--corPrincipal)] transition duration-300">
+        {/*<button className="bg-[var(--corPrincipal)] text-white text-sm pl-6 pr-6 rounded-lg border border-solid border-black hover:bg-white hover:text-[var(--corPrincipal)] transition duration-300">
           Atualizar
-        </button>
+        </button>*/}
       </div>
       {loading === false ?(
         
