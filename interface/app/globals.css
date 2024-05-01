@@ -69,6 +69,10 @@ span{
   height: 300px;
 }
 
+.bm-overlay{
+  top: 0;
+}
+
 @media (max-width: 1085px){
   .menuEstagiarV{
     display: none;

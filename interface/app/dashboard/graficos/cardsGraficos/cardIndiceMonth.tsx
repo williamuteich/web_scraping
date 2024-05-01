@@ -37,7 +37,7 @@ const CardIndiceMonth = () => {
                 data: {
                     labels: meses,
                     datasets: [{
-                        label: 'Vagas',
+                        label: 'Vagas add por mês',
                         data: vagasPorMes,
                         backgroundColor: 'rgba(54, 162, 235, 0.5)',
                         borderColor: 'rgba(54, 162, 235, 1)',
